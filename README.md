@@ -1,20 +1,22 @@
-# mini-low-code
+# 写一个玩具低代码平台
 
-## Project setup
-```
-pnpm install
-```
+## vue3 使用 jsx 语法
 
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
+- v-model 语法
 
-### Compiles and minifies for production
+```js
+// 父组件
+// 正常的template中写v-model:userInfo,jsx中要放在[]中，数组第一项是
+// 绑定的数据源，第二项是自定义的名称
+<Demo1Child v-model={[data, 'userInfo']} />;
+// 子组件
+// 使用直接访问props中的userInfo，更改的话直接修改就可以
+const dataName = computed({
+  get() {
+    return props.userInfo.value.name;
+  },
+  set(newValue) {
+    return (props.userInfo.value.name = newValue);
+  },
+});
 ```
-pnpm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# mini-low-code

@@ -3,14 +3,14 @@ import { defineComponent, defineEmits, computed, ref } from 'vue';
 export default defineComponent({
   name: 'Demo1Child',
   props: ['count', 'userInfo'],
-  emits: ['changeCount', 'update:userInfo'],
+  emits: ['changeCount'],
   setup(props, { emit }) {
     const dataName = computed({
       get() {
         return props.userInfo.value.name;
       },
       set(newValue) {
-        return (props.userInfo.value.name = newValue);
+        props.userInfo.value.name = newValue;
       },
     });
     return () => (
@@ -20,9 +20,7 @@ export default defineComponent({
         <br />
         {dataName.value}
         <br />
-        <button onClick={() => (dataName.value.name = 'lisi')}>
-          changeName
-        </button>
+        <button onClick={() => (dataName.value = 'lisi')}>changeName</button>
       </div>
     );
   },
